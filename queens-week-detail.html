@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queens Week - Kingston University | Airbnb Education</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #222222;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid #EBEBEB;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1760px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #FF5A5F;
+        }
+
+        .back-link {
+            color: #222222;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #FF5A5F;
+        }
+
+        /* Hero Image Gallery */
+        .hero-gallery {
+            max-width: 1760px;
+            margin: 30px auto;
+            padding: 0 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 300px 300px;
+            gap: 10px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #8B4789 0%, #D4AF37 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .gallery-item-1 {
+            grid-row: span 2;
+        }
+
+        .gallery-label {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        /* Content Section */
+        .content-wrapper {
+            max-width: 1760px;
+            margin: 0 auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 80px;
+        }
+
+        .main-content {
+            max-width: 800px;
+        }
+
+        .title-section {
+            margin-bottom: 40px;
+        }
+
+        .title-section h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #222222;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #717171;
+            margin-bottom: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .rating {
+            color: #FF5A5F;
+            font-weight: 600;
+        }
+
+        .rating::before {
+            content: '★ ';
+        }
+
+        .location {
+            color: #222222;
+            font-weight: 600;
+        }
+
+        .badge {
+            background: #FFD700;
+            color: #222222;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #EBEBEB;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #222222;
+        }
+
+        .section h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            margin-top: 24px;
+            color: #222222;
+        }
+
+        .section p {
+            color: #222222;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .section ul, .section ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .section li {
+            color: #222222;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .highlight-card {
+            background: #F7F7F7;
+            padding: 24px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .highlight-card .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .highlight-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #222222;
+        }
+
+        .highlight-card p {
+            color: #717171;
+            font-size: 14px;
+        }
+
+        /* Pricing Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #F7F7F7;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #EBEBEB;
+        }
+
+        th {
+            font-weight: 700;
+            color: #222222;
+        }
+
+        td {
+            color: #222222;
+        }
+
+        .price-highlight {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FF5A5F;
+        }
+
+        /* Sidebar Booking Card */
+        .booking-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .booking-card {
+            background: white;
+            border: 1px solid #DDDDDD;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .price-display {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #EBEBEB;
+        }
+
+        .price-display .amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #222222;
+        }
+
+        .price-display .label {
+            color: #717171;
+            font-size: 16px;
+        }
+
+        .booking-details {
+            margin-bottom: 24px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            color: #222222;
+        }
+
+        .detail-label {
+            font-weight: 600;
+        }
+
+        .btn-book {
+            width: 100%;
+            background: linear-gradient(135deg, #FF5A5F 0%, #E00007 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 16px;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 90, 95, 0.3);
+        }
+
+        .contact-btn {
+            width: 100%;
+            background: white;
+            color: #222222;
+            border: 2px solid #222222;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: #F7F7F7;
+        }
+
+        .assurance {
+            text-align: center;
+            color: #717171;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+
+        .partnership-logos {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #EBEBEB;
+        }
+
+        .partner-logo {
+            background: #F7F7F7;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #222222;
+        }
+
+        /* Features List */
+        .features-list {
+            background: #F7F7F7;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 24px 0;
+        }
+
+        .features-list h3 {
+            margin-top: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: #FF5A5F;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: white;
+            border: 1px solid #EBEBEB;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .testimonial-header {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .testimonial-author {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: #222222;
+        }
+
+        .author-location {
+            color: #717171;
+            font-size: 14px;
+        }
+
+        .testimonial-text {
+            color: #222222;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #8B4789 0%, #D4AF37 100%);
+            color: white;
+            padding: 60px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .btn-cta {
+            background: white;
+            color: #8B4789;
+            padding: 18px 40px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #F7F7F7;
+            padding: 40px;
+            text-align: center;
+            color: #717171;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">airbnb</div>
+            <a href="airbnb-education-landing.html" class="back-link">← Back to Education</a>
+        </nav>
+    </header>
+
+    <div class="hero-gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item gallery-item-1">
+                <div class="gallery-label">
+                    <div style="font-size: 48px; margin-bottom: 10px;">👑</div>
+                    Hampton Court Palace<br>Royal Fashion Workshop
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-label">Kingston University<br>Creative Studios</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-label">Premium Student<br>Accommodation</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-label">FuseBox<br>Community Events</div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-label">The Rex<br>Kingston</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="main-content">
+            <div class="title-section">
+                <h1>Queens Week: Royal Fashion & Heritage Experience</h1>
+                <div class="subtitle">An exclusive education experience by Kingston University & Historic Royal Palaces</div>
+                <div class="meta-info">
+                    <span class="rating">4.9 (127 reviews)</span>
+                    <span class="location">📍 Kingston upon Thames, London</span>
+                    <span class="badge">PREMIUM EXPERIENCE</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>About This Experience</h2>
+                <p>
+                    Imagine a South Asian family considering sending their daughter to London to study Fashion. Kingston University offers a high-value, one-week "Education Experience" called <strong>Queens Week</strong>—an immersive journey combining royal heritage, creative excellence, and authentic student living.
+                </p>
+                <p>
+                    Through an innovative MOU partnership between Kingston University, Historic Royal Palaces (Hampton Court), and Airbnb, families get an exclusive preview of world-class education while experiencing London's rich cultural heritage.
+                </p>
+
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <div class="icon">👑</div>
+                        <h4>Royal Heritage</h4>
+                        <p>Study at Hampton Court Palace</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="icon">✂️</div>
+                        <h4>Hands-On Creation</h4>
+                        <p>Create Tyvek replica garments</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="icon">🏛️</div>
+                        <h4>University Preview</h4>
+                        <p>Experience student life</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="icon">👨‍🏫</div>
+                        <h4>Expert Tutors</h4>
+                        <p>AFHEA accredited practitioners</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>What You'll Experience</h2>
+
+                <div class="features-list">
+                    <h3>7-Day Programme Highlights</h3>
+                    <div class="feature-item">
+                        <span><strong>Day 1-2:</strong> Introduction to royal fashion history and textile analysis at Hampton Court Palace</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>Day 3-5:</strong> Hands-on creation of bespoke Tyvek replica garments sized to fit, guided by Kingston's Creative Practitioners</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>Day 6:</strong> Final garment assembly and styling workshop</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>Day 7:</strong> Showcase presentation and graduation ceremony</span>
+                    </div>
+                    <div class="feature-item">
+                        <span><strong>Evenings:</strong> Exclusive local experiences including storytelling events at Community Brain's FuseBox</span>
+                    </div>
+                </div>
+
+                <h3>Unique Educational Value</h3>
+                <ul>
+                    <li><strong>Parent & Student Co-Participation:</strong> Designed for families to experience together, building confidence for overseas study</li>
+                    <li><strong>AFHEA & Makerversity Accredited:</strong> Learn from Kingston's uniquely qualified Creative Practitioners</li>
+                    <li><strong>Historic Royal Palaces Partnership:</strong> Exclusive access to Hampton Court's collections and expertise</li>
+                    <li><strong>Authentic Student Living:</strong> Stay in premium Kingston student residences or certified partners like The Rex Kingston</li>
+                    <li><strong>Local Cultural Immersion:</strong> Evening events with Community Brain exploring Kingston's vibrant creative community</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Accommodation & Location</h2>
+                <p>
+                    Your stay includes premium accommodation options that give authentic insight into student life at Kingston University:
+                </p>
+                <ul>
+                    <li><strong>Kingston Student Residences:</strong> Modern, fully-equipped apartments in the heart of campus life</li>
+                    <li><strong>The Rex Kingston:</strong> Certified partner accommodation offering boutique comfort with local character</li>
+                    <li><strong>Location Benefits:</strong> Walking distance to Hampton Court Palace, River Thames, and Kingston's historic market town</li>
+                    <li><strong>Transport Links:</strong> 30 minutes to Central London by train, easy access to all major attractions</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Why This Matters</h2>
+                <p>
+                    This disruptive model represents a new way to experience higher education:
+                </p>
+                <ul>
+                    <li><strong>Preview Before Commitment:</strong> Families can assess Kingston University and UK education before making a full degree commitment</li>
+                    <li><strong>Cultural Confidence Building:</strong> Overcome anxiety about overseas study through supported immersion</li>
+                    <li><strong>Tourism Meets Education:</strong> Promoted through Visit Britain and TripAdvisor, bringing high-value "educational tourists" to Kingston</li>
+                    <li><strong>Community Economic Impact:</strong> Benefits local businesses, accommodation providers, and cultural organizations</li>
+                    <li><strong>University Recruitment Pipeline:</strong> Creates direct pathways for qualified international students</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Pricing & Packages</h2>
+                <p>
+                    Queens Week offers exceptional value for an exclusive educational experience:
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Package Element</th>
+                            <th>Details</th>
+                            <th>Price Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Queens Week Tuition</strong></td>
+                            <td>7-day course, materials, Hampton Court access, AFHEA practitioners</td>
+                            <td>£1,500 - £2,500</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accommodation</strong></td>
+                            <td>7 nights premium student residence or The Rex Kingston</td>
+                            <td>£500 - £1,200</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cultural Experiences</strong></td>
+                            <td>FuseBox events, local tours, community engagement</td>
+                            <td>£150 - £400</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>Total Package (per person)</strong></td>
+                            <td class="price-highlight">£2,200 - £4,100</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 20px;">
+                    <strong>Parent & Child Packages Available:</strong> Special tiered pricing for families participating together. Contact us for custom family packages.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2>Reviews & Testimonials</h2>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="avatar">PR</div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Priya Rajagopal</div>
+                            <div class="author-location">Mumbai, India</div>
+                            <div class="rating">4.9</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        "Queens Week exceeded all our expectations. My daughter and I spent an incredible week learning royal fashion history at Hampton Court Palace. The Creative Practitioners were world-class, and creating our own Tyvek replicas was magical. This experience gave us the confidence that Kingston University is the right choice for her fashion degree."
+                    </p>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="avatar">SA</div>
+                        <div class="testimonial-author">
+                            <div class="author-name">Sarah Ahmed</div>
+                            <div class="author-location">Dubai, UAE</div>
+                            <div class="rating">5.0</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        "The combination of academic excellence, cultural immersion, and premium accommodation made this so much more than a summer course. The evening events at FuseBox connected us with Kingston's creative community. My son starts his degree here next year—Queens Week made him fall in love with the university and the city."
+                    </p>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <div class="avatar">JL</div>
+                        <div class="testimonial-author">
+                            <div class="author-name">James Liu</div>
+                            <div class="author-location">Singapore</div>
+                            <div class="rating">4.8</div>
+                        </div>
+                    </div>
+                    <p class="testimonial-text">
+                        "As a parent, I was concerned about sending my daughter overseas for university. This programme let us both experience student life together. The accommodation was excellent, the teaching was inspirational, and we felt completely supported throughout. Worth every penny."
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Partnership Excellence</h2>
+                <p>
+                    Queens Week is made possible through a groundbreaking MOU and Knowledge Exchange/Knowledge Transfer Partnership (KE_KTP) between:
+                </p>
+                <ul>
+                    <li><strong>Kingston University:</strong> Award-winning creative education with AFHEA accredited practitioners and Makerversity partnerships</li>
+                    <li><strong>Historic Royal Palaces:</strong> Exclusive access to Hampton Court Palace collections and heritage expertise</li>
+                    <li><strong>Airbnb:</strong> Premium accommodation curation and education tourism platform</li>
+                    <li><strong>Community Brain @ FuseBox:</strong> Local cultural engagement and storytelling experiences</li>
+                    <li><strong>Visit Britain/Kingston Tourism:</strong> International promotion and destination marketing</li>
+                </ul>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Begin Your Journey?</h2>
+                <p>Join families from around the world discovering Kingston's unique blend of royal heritage, creative excellence, and academic distinction.</p>
+                <a href="#" class="btn-cta">Request Information</a>
+            </div>
+        </div>
+
+        <div class="booking-sidebar">
+            <div class="booking-card">
+                <div class="price-display">
+                    <div class="amount">£2,200 - £4,100</div>
+                    <div class="label">per person / 7 days</div>
+                </div>
+
+                <div class="booking-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Duration:</span>
+                        <span>7 days / 6 nights</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Group Size:</span>
+                        <span>Max 20 participants</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Language:</span>
+                        <span>English</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Age:</span>
+                        <span>16+ (families welcome)</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Next Dates:</span>
+                        <span>July 14-20, 2025</span>
+                    </div>
+                </div>
+
+                <button class="btn-book">Reserve Your Spot</button>
+                <button class="contact-btn">Contact University</button>
+
+                <p class="assurance">✓ Fully refundable up to 30 days before<br>✓ Official Kingston University partnership</p>
+
+                <div class="partnership-logos">
+                    <div class="partner-logo">KINGSTON<br>UNIVERSITY</div>
+                    <div class="partner-logo">HISTORIC<br>ROYAL PALACES</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Airbnb Education | Queens Week Programme</p>
+        <p style="margin-top: 10px; font-size: 13px;">Mock-up created for Kingston University MOU/KE_KTP Concept Review</p>
+        <p style="margin-top: 10px;">Partnership between Kingston University, Historic Royal Palaces, Airbnb, and Community Brain</p>
+    </footer>
+</body>
+</html>

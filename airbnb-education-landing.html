@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airbnb Education - Unique Learning Experiences</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #222222;
+        }
+
+        /* Header Navigation */
+        header {
+            background: white;
+            border-bottom: 1px solid #EBEBEB;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1760px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: #FF5A5F;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #222222;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #FF5A5F;
+        }
+
+        .nav-menu .active {
+            color: #FF5A5F;
+            border-bottom: 2px solid #FF5A5F;
+            padding-bottom: 2px;
+        }
+
+        .user-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #FF5A5F;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #E00007;
+            box-shadow: 0 4px 12px rgba(255, 90, 95, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 50px;
+            padding: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: #FF5A5F;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #E00007;
+            transform: scale(1.02);
+        }
+
+        /* Featured Section */
+        .featured {
+            max-width: 1760px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #222222;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .experience-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #222222;
+        }
+
+        .badge.premium {
+            background: #FFD700;
+            color: #222222;
+        }
+
+        .experience-content {
+            padding: 24px;
+        }
+
+        .experience-location {
+            color: #717171;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .experience-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #222222;
+        }
+
+        .experience-description {
+            color: #717171;
+            font-size: 15px;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .experience-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid #EBEBEB;
+        }
+
+        .duration {
+            color: #222222;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #222222;
+        }
+
+        .price-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: #717171;
+        }
+
+        /* Featured Hero Card */
+        .featured-hero {
+            background: linear-gradient(135deg, #FF5A5F 0%, #E00007 100%);
+            border-radius: 24px;
+            padding: 60px;
+            color: white;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="300" cy="100" r="150" fill="rgba(255,255,255,0.1)"/><circle cx="350" cy="300" r="100" fill="rgba(255,255,255,0.05)"/></svg>') no-repeat center;
+            background-size: cover;
+        }
+
+        .featured-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .featured-hero h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .featured-hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .highlight-box h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .highlight-box li {
+            padding: 8px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .highlight-box li::before {
+            content: '✓';
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .btn-light {
+            background: white;
+            color: #FF5A5F;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-light:hover {
+            background: #f7f7f7;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #F7F7F7;
+            padding: 60px 40px 30px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1760px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #222222;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #717171;
+            text-decoration: none;
+            display: block;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #222222;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #DDDDDD;
+            color: #717171;
+        }
+
+        /* Rating */
+        .rating {
+            color: #FF5A5F;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .rating::before {
+            content: '★ ';
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">airbnb</div>
+            <ul class="nav-menu">
+                <li><a href="#">Stays</a></li>
+                <li><a href="#">Experiences</a></li>
+                <li><a href="#" class="active">Education</a></li>
+                <li><a href="#">Adventures</a></li>
+            </ul>
+            <div class="user-menu">
+                <a href="#" class="btn btn-primary">Become a host</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Education Experiences</h1>
+        <p>Discover world-class learning opportunities combined with unique accommodation. From royal heritage to creative workshops, unlock transformative educational journeys.</p>
+        <div class="search-box">
+            <input type="text" placeholder="Where do you want to learn?">
+            <button>Search</button>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="featured-hero">
+            <div class="featured-hero-content">
+                <h2>👑 Queens Week at Kingston University</h2>
+                <p>An exclusive premium education experience combining royal heritage, creative fashion design, and authentic London student living.</p>
+
+                <div class="highlight-box">
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>7-day intensive Fashion & Royal Dress course</li>
+                        <li>Hands-on Tyvek replica creation at Hampton Court Palace</li>
+                        <li>Expert Creative Practitioners (AFHEA accredited)</li>
+                        <li>Premium student accommodation in Kingston</li>
+                        <li>Exclusive evening events at Community Brain FuseBox</li>
+                        <li>Parent & student co-participation welcome</li>
+                    </ul>
+                </div>
+
+                <a href="queens-week-detail.html" class="btn-light">Explore Queens Week →</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">Featured Education Experiences</h2>
+        <div class="experience-grid">
+            <a href="queens-week-detail.html" class="experience-card">
+                <div class="experience-image" style="background: linear-gradient(135deg, #8B4789 0%, #D4AF37 100%);">
+                    <div class="badge premium">PREMIUM</div>
+                </div>
+                <div class="experience-content">
+                    <div class="experience-location">KINGSTON UPON THAMES, LONDON</div>
+                    <h3 class="experience-title">Queens Week: Royal Fashion & Heritage</h3>
+                    <div class="rating">4.9 (127 reviews)</div>
+                    <p class="experience-description">
+                        Immerse yourself in British royal fashion history. Study at Hampton Court Palace, create bespoke garments, and experience authentic student life in historic Kingston.
+                    </p>
+                    <div class="experience-details">
+                        <span class="duration">📅 7 days</span>
+                        <span class="price">£2,200 - £4,100 <span class="price-label">/ person</span></span>
+                    </div>
+                </div>
+            </a>
+
+            <div class="experience-card">
+                <div class="experience-image" style="background: linear-gradient(135deg, #2E3192 0%, #1BFFFF 100%);"></div>
+                <div class="experience-content">
+                    <div class="experience-location">OXFORD, ENGLAND</div>
+                    <h3 class="experience-title">Oxford Summer Academy</h3>
+                    <div class="rating">4.8 (214 reviews)</div>
+                    <p class="experience-description">
+                        Two-week intensive academic experience at Oxford University with accommodation in historic college rooms.
+                    </p>
+                    <div class="experience-details">
+                        <span class="duration">📅 14 days</span>
+                        <span class="price">£3,500 <span class="price-label">/ person</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-image" style="background: linear-gradient(135deg, #F05053 0%, #E1BEE7 100%);"></div>
+                <div class="experience-content">
+                    <div class="experience-location">LONDON, ENGLAND</div>
+                    <h3 class="experience-title">UAL Creative Arts Immersion</h3>
+                    <div class="rating">4.9 (89 reviews)</div>
+                    <p class="experience-description">
+                        Explore design, fashion, and creative arts with industry professionals at University of the Arts London.
+                    </p>
+                    <div class="experience-details">
+                        <span class="duration">📅 5 days</span>
+                        <span class="price">£1,800 <span class="price-label">/ person</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-image" style="background: linear-gradient(135deg, #43CEA2 0%, #185A9D 100%);"></div>
+                <div class="experience-content">
+                    <div class="experience-location">EDINBURGH, SCOTLAND</div>
+                    <h3 class="experience-title">Edinburgh Business & Innovation Week</h3>
+                    <div class="rating">4.7 (156 reviews)</div>
+                    <p class="experience-description">
+                        Learn entrepreneurship and business strategy in Scotland's capital with stays in historic accommodations.
+                    </p>
+                    <div class="experience-details">
+                        <span class="duration">📅 7 days</span>
+                        <span class="price">£2,600 <span class="price-label">/ person</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-image" style="background: linear-gradient(135deg, #F2709C 0%, #FF9472 100%);"></div>
+                <div class="experience-content">
+                    <div class="experience-location">CAMBRIDGE, ENGLAND</div>
+                    <h3 class="experience-title">Cambridge STEM Discovery</h3>
+                    <div class="rating">4.9 (198 reviews)</div>
+                    <p class="experience-description">
+                        Hands-on science, technology, and engineering workshops with Cambridge researchers and college accommodation.
+                    </p>
+                    <div class="experience-details">
+                        <span class="duration">📅 10 days</span>
+                        <span class="price">£3,200 <span class="price-label">/ person</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                <div class="experience-content">
+                    <div class="experience-location">LONDON, ENGLAND</div>
+                    <h3 class="experience-title">LBS Leadership Bootcamp</h3>
+                    <div class="rating">4.8 (73 reviews)</div>
+                    <p class="experience-description">
+                        Elite business school experience at London Business School with premium Central London accommodation.
+                    </p>
+                    <div class="experience-details">
+                        <span class="duration">📅 6 days</span>
+                        <span class="price">£4,500 <span class="price-label">/ person</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Safety information</a></li>
+                    <li><a href="#">Cancellation options</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Airbnb.org</a></li>
+                    <li><a href="#">Supporting people</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Hosting</h4>
+                <ul>
+                    <li><a href="#">Try hosting</a></li>
+                    <li><a href="#">Education partnerships</a></li>
+                    <li><a href="#">Host an experience</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Airbnb</h4>
+                <ul>
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Investors</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Airbnb Education | Mock-up for Kingston University MOU/KE_KTP Concept</p>
+        </div>
+    </footer>
+</body>
+</html>
